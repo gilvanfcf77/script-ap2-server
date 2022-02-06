@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link REL="SHORTCUT ICON" HREF="https://i0.wp.com/sobral.ufc.br/wp-content/uploads/2014/11/brasao_quadrado-5478b641_site_icon.png?fit=512%2C512&ssl=1">
+    <title>Soma 2</title>
+</head>
+
+<body>
+    <div style="text-align: center; padding-top: 15%;">
+        <h2>Soma 2</h2>
+        <p>Se você clicar em "Somar 2" o número que você escolheu será somado com 2.</p><br>
+
+        <form>
+            <label for="fname">Escolha um valor:</label>
+            <input type="number" id="value" name="value" value="0">
+            <input type="button" value="Somar 2" onclick="soma()">
+        </form>
+
+        <br> <strong>O resultado é:</strong> <span id="result"></span>
+
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    var value = 0;
+
+    function soma() {
+        value = document.getElementById('value').value;
+        fetch('/sum?' + 'value=' + value)
+            .then(function (response) {
+                return response.json();
+            }).then(function (data) {
+                console.log(data);
+                document.getElementById('result').innerHTML = data;
+            }).catch(function () {
+                console.log("Booo");
+            });
+    }
+
+</script>
